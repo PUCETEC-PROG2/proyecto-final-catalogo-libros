@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Clientes</h1>
+  <ul>
+    {% for cliente in clientes %}
+      <li>{{ cliente.nombre }} ({{ cliente.apellido }})</li>
+    {% endfor %}
+  </ul>
+  <button id="nuevo-registro">Nuevo Registro</button>
+  <div id="formulario-registro" style="display: none;">
+    <form>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre"><br><br>
+      <label for="apellido">Apellido:</label>
+      <input type="text" id="apellido" name="apellido"><br><br>
+      <button id="guardar-registro">Guardar</button>
+    </form>
+  </div>
+{% endblock %}

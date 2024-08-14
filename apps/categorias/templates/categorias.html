@@ -1,0 +1,21 @@
+<!-- categorias/templates/categorias.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Categorías</h1>
+  <ul>
+    {% for categoria in categorias %}
+      <li>{{ categoria.nombre }} ({{ categoria.descripcion }})</li>
+    {% endfor %}
+  </ul>
+  <button id="nuevo-registro">Nuevo Registro</button>
+  <div id="formulario-registro" style="display: none;">
+    <form>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre"><br><br>
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" name="descripcion"></textarea><br><br>
+      <button id="guardar-registro">Guardar</button>
+    </form>
+  </div>
+{% endblock %}
