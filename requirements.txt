@@ -1,34 +1,4 @@
-# requirements.txt
-
-# Django
-django==3.2.5
-
-# Base de datos
-psycopg2-binary==2.9.3
-
-# Servidor web
-gunicorn==20.1.0
-
-# Bibliotecas adicionales
-Pillow==8.3.2
-django-crispy-forms==1.13.0
-django-filter==2.4.0
-django-rest-framework==3.12.4
-django-allauth==0.41.0
-django-debug-toolbar==3.2.4
-django-extensions==3.1.5
-django-storages==1.12.3
-boto3==1.21.23
-django-compressor==2.4.1
-django-ckeditor==6.4.2
-django-q==1.3.9
-celery==5.2.7
-redis==4.2.2
-django-redis==5.2.0
-django-rq==2.5.1
-rq==1.10.1
-
-# Herramientas de desarrollo
-ipython==7.32.0
-django-debug-toolbar-lineprofiler==1.11
-django-extensions-check-dependencies==1.1.0
+asgiref==3.8.1
+Django==4.2
+psycopg2-binary==2.9.9
+sqlparse==0.5.0
