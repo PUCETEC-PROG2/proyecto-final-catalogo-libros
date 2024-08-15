@@ -1,0 +1,20 @@
+<!-- book_detail.html -->
+{% extends "base.html" %}
+{% block title %}Detalles del Libro{% endblock title %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <p class="card-text">Año: {{ book.year}} </p>
+            <p class="card-text">Precio: {{ book.price }}</p>
+            <p class="card-text">Stock: {{ book.stock }}</p>
+            <p class="card-text">Autor: {{ book.author }}</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'pokedex:edit_book' book.id %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'pokedex:delete_book' book.id %}" class="btn btn-danger">Eliminar</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

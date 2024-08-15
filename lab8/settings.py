@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'lab8.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'album_manager',
+        'NAME': 'pokedex',
         'HOST':'localhost',
         'PORT':'5432',
         'USER':'postgres',
@@ -126,9 +126,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Additional locations of static files
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+
 #Media Files
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'

@@ -1,5 +1,34 @@
 from django.db import models
 
+class Trainer(models.Model):
+    first_name = models.CharField(max_length=30,null=False)
+    last_name = models.CharField(max_length=30,null=False)
+    birth_date = models.DateField()
+    level= models.IntegerField(default=1)
+    picture = models.ImageField(upload_to='trainer_images')
+    
+    def __str__(self) -> str:
+        return f'({self.first_name} {self.last_name})'
+    
+class Pokemon(models.Model):
+    name = models.CharField(max_length=30,null=False)
+    POKEMON_TYPES={
+        ('FUEGO','Fuego'),
+       ('AGUA','Agua'),
+       ('TIERRA','Tierra'),
+       ('ELECTRICO','Electrico'),
+       ('PSIQUICO','psiquico'), 
+       
+    }
+    type = models.CharField(max_length=30,choices=POKEMON_TYPES,null=False)
+    weight = models.DecimalField(null=False,default=1,max_digits=4,decimal_places=2)
+    height = models.DecimalField(null=False,default=1,max_digits=4,decimal_places=2)
+    trainer = models.ForeignKey(Trainer,on_delete=models.CASCADE)    
+    picture= models.ImageField(upload_to='pokemon_images')
+    
+    def __str__(self) -> str:
+        return self.name
+
 class Author(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -7,7 +36,7 @@ class Author(models.Model):
 
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}'
-
+   
 class Catalog(models.Model):
     status = models.CharField(max_length=255)
     genre = models.CharField(max_length=255)
@@ -16,11 +45,11 @@ class Catalog(models.Model):
 
     def __str__(self) -> str:
         return f'{self.status} - {self.genre}'
-
+    
 class Book(models.Model):
     title = models.CharField(max_length=255)
     year = models.IntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.IntegerField()
     stock = models.IntegerField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
@@ -38,26 +67,3 @@ class BookCatalog(models.Model):
     def __str__(self) -> str:
         return f'{self.book} in {self.catalog}'
 
-class Sale(models.Model):
-    date_of_purchase = models.DateField()
-    total = models.DecimalField(max_digits=10, decimal_places=2)
-    number_of_books = models.IntegerField()
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    client = models.ForeignKey('Client', on_delete=models.CASCADE)
-
-    def __str__(self) -> str:
-        return f'Sale on {self.date_of_purchase} - Total: {self.total}'
-
-class Client(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    id_number = models.CharField(max_length=20)
-    email = models.EmailField()
-    phone = models.CharField(max_length=20)
-    address = models.TextField()
-    catalog = models.ForeignKey(Catalog, on_delete=models.SET_NULL, null=True, blank=True)
-    book = models.ManyToManyField(Book, related_name='clients', blank=True)
-    sale = models.ManyToManyField(Sale, related_name='clients', blank=True)
-
-    def __str__(self) -> str:
-        return f'{self.first_name} {self.last_name}'

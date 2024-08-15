@@ -1,0 +1,20 @@
+<!-- catalog_detail.html -->
+{% extends "base.html" %}
+{% block title %}Detalles de la categorìa{% endblock title %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card">      
+        <div class="card-body">
+            <h5 class="card-title">{{ catalog.genre }}</h5>
+            <p class="card-text">Estado: {{ catalog.status}} </p>
+            <p class="card-text">Estado cliente: {{ catalog.customer_status }}</p>
+            <p class="card-text">Tipo pago: {{ catalog.payment_type }}</p>
+            <a href="{% url 'pokedex:catalog_detail' catalog.id %}" class="btn btn-primary">Ver Detalles</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'pokedex:edit_catalog' catalog.id %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'pokedex:delete_catalog' catalog.id %}" class="btn btn-danger">Eliminar</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

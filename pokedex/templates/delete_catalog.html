@@ -1,0 +1,14 @@
+<!-- catalog_trainer.html -->
+{% extends "base.html" %}
+{% block title %}Eliminar Categorìa{% endblock title %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Eliminar Autor</h2>
+    <p>¿Estás seguro de que quieres eliminar a {{ catalog.genre }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'pokedex:catalogs' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock content %}

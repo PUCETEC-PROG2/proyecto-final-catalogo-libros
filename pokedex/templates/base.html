@@ -23,15 +23,24 @@
                         <a class="nav-link btn btn-success text-white"  href="{% url "pokedex:index" %}" style="margin-right: 15px">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link btn btn-success text-white"  href="{% url "pokedex:trainers" %}" style="margin-right: 15px">Entrenadores</a>
+                        <a class="nav-link btn btn-danger text-white"  href="{% url "pokedex:authors" %}" style="margin-right: 15px">Autores</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link btn btn-success text-white"  href="{% url "pokedex:catalogs" %}" style="margin-right: 15px">Categorìas</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-white"  href="{% url "pokedex:books" %}" style="margin-right: 15px">Libros</a>
                       </li>
                       {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link btn btn-success text-white" href="{% url "pokedex:add_pokemon" %}" style="margin-right: 15px">Nuevo Pokemon</a>
+                          <a class="nav-link btn btn-danger text-white" href="{% url "pokedex:add_author" %}" style="margin-right: 15px">Nuevo Autor</a>
+                      </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-success text-white" href="{% url "pokedex:add_catalog" %}" style="margin-right: 15px">Nuevo Categorìa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-success text-white" href="{% url "pokedex:add_trainer" %}" style="margin-right: 15px">Nuevo Entrenador</a>
-                        </li>
+                          <a class="nav-link btn btn-primary text-white" href="{% url "pokedex:add_book" %}" style="margin-right: 15px">Nuevo Libro</a>
+                      </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-danger text-white" href="{% url "logout" %}">Logout</a>
                         </li>
