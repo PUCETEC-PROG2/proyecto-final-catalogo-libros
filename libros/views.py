@@ -11,9 +11,9 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     ##pokemons = Pokemon.objects.all() ##SELEC*FROM libros_pokemon
-    pokemons = Pokemon.objects.order_by('type')
+    books = Book.objects.order_by('title')
     template = loader.get_template('index.html')
-    return HttpResponse(template.render({'pokemons': pokemons}, request))
+    return HttpResponse(template.render({'books': books}, request))
 
 
 @login_required
