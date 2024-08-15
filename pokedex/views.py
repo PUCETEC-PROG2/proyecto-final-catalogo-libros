@@ -275,13 +275,15 @@ def crear_compra(request):
         form = CompraForm(request.POST)
         if form.is_valid():
             compra = form.save(commit=False)
+            compra.save()  # Guarda la instancia de Compra primero para que tenga un ID
+            form.save_m2m()  # Guarda las relaciones de muchos a muchos
             compra.total = calcular_total(compra.productos.all())
-            compra.save()  # Save the compra instance
-            form.save_m2m()  # Save the many-to-many relationships
+            compra.save()  # Guarda la instancia de Compra con el total actualizado
             return redirect('pokedex:detalle_compra', pk=compra.pk)
     else:
         form = CompraForm()
     return render(request, 'crear_compra.html', {'form': form})
+
 
 def detalle_compra(request, pk):
     compra = Compra.objects.get(pk=pk)
@@ -290,7 +292,7 @@ def detalle_compra(request, pk):
 def calcular_total(productos):
     total = 0
     for producto in productos:
-        total += producto.precio
+        total += producto.price
     return total
 
 class CustomLoginView(LoginView):

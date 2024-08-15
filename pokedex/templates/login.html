@@ -8,21 +8,19 @@
             <form action="" method="post">
                 {% csrf_token %}
                 <div>
-                    <label for="username"  class="btn btn-primary">Usuario: </label>
+                    <label for="username" >Usuario: </label>
                     <input type="text" class = 'form-control' name="username" id="username"/>
                     
                 </div>
                 <br/>
                 <div>
-                    <label for="password" class="btn btn-primary">Contrasena: </label>
+                    <label for="password" >Contrasena: </label>
                     <input type="password" class = 'form-control' name="password" id="password"/>
                 </div>
                 <br/>
                 <button type="submit" class = "btn btn-success"> Ingresar </button>
             </form>
-            <img src="{% static 'pokebola.jpeg' %}" style="width: 200px; height: auto; border-radius: 50%;"/>
-            <img src="{% static 'pokebolita.jpeg' %}" style="width: 200px; height: auto; border-radius: 50%;"/>
-        
+            <img src="{% static 'conocimiento.png' %}" style="width: 400px; height: auto;" alt="Conocimiento"/>     
         </div>
     </div>
 
