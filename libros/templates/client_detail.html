@@ -11,8 +11,8 @@
                     <p class="card-text">Telefono: {{ client.phone }}</p>
                     <p class="card-text">Direcciòn: {{ client.address }}</p>
             {% if user.is_authenticated %}
-            <a href="{% url 'pokedex:edit_client' client.id %}" class="btn btn-warning">Editar</a>
-            <a href="{% url 'pokedex:delete_client' client.id %}" class="btn btn-danger">Eliminar</a>
+            <a href="{% url 'libros:edit_client' client.id %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'libros:delete_client' client.id %}" class="btn btn-danger">Eliminar</a>
             {% endif %}
         </div>
     </div>

@@ -93,5 +93,5 @@ class CompraForm(forms.ModelForm):
         widgets = {
             'cliente': forms.Select(attrs={'class': 'form-control'}),
             'fecha': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'productos': forms.CheckboxSelectMultiple(attrs={'class': 'form-control'}),
+            'productos': forms.SelectMultiple(attrs={'class': 'form-control'}),
         }

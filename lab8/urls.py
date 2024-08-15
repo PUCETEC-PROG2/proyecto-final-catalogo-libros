@@ -1,5 +1,5 @@
 """
-URL configuration for pokedex project.
+URL configuration for libros project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -21,7 +21,7 @@ from lab8 import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pokedex.urls')),
+    path('', include('libros.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 

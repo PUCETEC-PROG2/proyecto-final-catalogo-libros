@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pokedex'
+    'libros'
 ]
 
 MIDDLEWARE = [
@@ -81,7 +81,7 @@ DATABASES = {
         'HOST':'localhost',
         'PORT':'5432',
         'USER':'postgres',
-        'PASSWORD':'postgres'
+        'PASSWORD':'Negikun1995'
     }
 }
 
@@ -139,4 +139,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Configuracion Login
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-LOGIN_URL = 'pokedex:login'
+LOGIN_URL = 'libros:login'

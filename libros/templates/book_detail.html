@@ -11,8 +11,8 @@
             <p class="card-text">Stock: {{ book.stock }}</p>
             <p class="card-text">Autor: {{ book.author }}</p>
             {% if user.is_authenticated %}
-            <a href="{% url 'pokedex:edit_book' book.id %}" class="btn btn-warning">Editar</a>
-            <a href="{% url 'pokedex:delete_book' book.id %}" class="btn btn-danger">Eliminar</a>
+            <a href="{% url 'libros:edit_book' book.id %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'libros:delete_book' book.id %}" class="btn btn-danger">Eliminar</a>
             {% endif %}
         </div>
     </div>

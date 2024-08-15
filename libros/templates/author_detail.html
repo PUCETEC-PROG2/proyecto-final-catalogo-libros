@@ -8,8 +8,8 @@
             <h5 class="card-title">{{ author.first_name }} {{ author.last_name }}</h5>
             <p class="card-text">Email: {{ author.email }}</p>
             {% if user.is_authenticated %}
-            <a href="{% url 'pokedex:edit_author' author.id %}" class="btn btn-warning">Editar</a>
-            <a href="{% url 'pokedex:delete_author' author.id %}" class="btn btn-danger">Eliminar</a>
+            <a href="{% url 'libros:edit_author' author.id %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'libros:delete_author' author.id %}" class="btn btn-danger">Eliminar</a>
             {% endif %}
         </div>
     </div>

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class PokedexConfig(AppConfig):
+class librosConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'pokedex'
+    name = 'libros'

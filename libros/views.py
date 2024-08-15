@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Pokemon, Trainer, Author,Catalog,Book,Client,Compra
 from django.shortcuts import get_object_or_404, redirect, render
-from pokedex.forms import PokemonForm, TrainerForm,AuthorForm,CatalogForm,BookForm,ClientForm,CompraForm
+from libros.forms import PokemonForm, TrainerForm,AuthorForm,CatalogForm,BookForm,ClientForm,CompraForm
 from django.http import JsonResponse
 
 #Importaciones libreria de autenticacion de Django
@@ -10,7 +10,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    ##pokemons = Pokemon.objects.all() ##SELEC*FROM pokedex_pokemon
+    ##pokemons = Pokemon.objects.all() ##SELEC*FROM libros_pokemon
     pokemons = Pokemon.objects.order_by('type')
     template = loader.get_template('index.html')
     return HttpResponse(template.render({'pokemons': pokemons}, request))
@@ -18,7 +18,7 @@ def index(request):
 
 @login_required
 def pokemon(request, pokemon_id):
-    # SELECT *FROM pokedex_pokemon Where id= 'Pokemon_id'
+    # SELECT *FROM libros_pokemon Where id= 'Pokemon_id'
     pokemon = get_object_or_404(Pokemon, id=pokemon_id)
     template = loader.get_template('display_pokemon.html')
     context = {
@@ -32,7 +32,7 @@ def add_pokemon(request):
         form = PokemonForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:index')
+            return redirect('libros:index')
     else:
         form = PokemonForm()
     
@@ -45,7 +45,7 @@ def edit_pokemon(request, id):
         form = PokemonForm(request.POST, request.FILES, instance=pokemon)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:index')
+            return redirect('libros:index')
     else:
         form = PokemonForm(instance=pokemon)
     
@@ -55,7 +55,7 @@ def edit_pokemon(request, id):
 def delete_pokemon(request, id):
     pokemon = get_object_or_404(Pokemon, pk = id)
     pokemon.delete()
-    return redirect('pokedex:index')
+    return redirect('libros:index')
 
 # Vistas para Trainer
 def trainers(request):
@@ -73,7 +73,7 @@ def add_trainer(request):
         form = TrainerForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:trainers')
+            return redirect('libros:trainers')
     else:
         form = TrainerForm()
     return render(request, 'trainer_form.html', {'form': form})
@@ -85,7 +85,7 @@ def edit_trainer(request, trainer_id):
         form = TrainerForm(request.POST, request.FILES, instance=trainer)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:trainers')
+            return redirect('libros:trainers')
     else:
         form = TrainerForm(instance=trainer)
     return render(request, 'trainer_form.html', {'form': form})
@@ -95,7 +95,7 @@ def delete_trainer(request, trainer_id):
     trainer = get_object_or_404(Trainer, id=trainer_id)
     if request.method == "POST":
         trainer.delete()
-        return redirect('pokedex:trainers')
+        return redirect('libros:trainers')
     return render(request, 'delete_trainer.html', {'trainer': trainer})
 
 # Vistas para Author
@@ -114,7 +114,7 @@ def add_author(request):
         form = AuthorForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:authors')
+            return redirect('libros:authors')
     else:
         form = AuthorForm()
     return render(request, 'author_form.html', {'form': form})
@@ -126,7 +126,7 @@ def edit_author(request, author_id):
         form = AuthorForm(request.POST, request.FILES, instance=author)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:authors')
+            return redirect('libros:authors')
     else:
         form = AuthorForm(instance=author)
     return render(request, 'author_form.html', {'form': form})
@@ -136,7 +136,7 @@ def delete_author(request, author_id):
     author = get_object_or_404(Author, id=author_id)
     if request.method == "POST":
         author.delete()
-        return redirect('pokedex:authors')
+        return redirect('libros:authors')
     return render(request, 'delete_author.html', {'author': author})
 
 
@@ -156,7 +156,7 @@ def add_catalog(request):
         form = CatalogForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:catalogs')
+            return redirect('libros:catalogs')
     else:
         form = CatalogForm()
     return render(request, 'catalog_form.html', {'form': form})
@@ -168,7 +168,7 @@ def edit_catalog(request, catalog_id):
         form = CatalogForm(request.POST, request.FILES, instance=catalog)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:catalogs')
+            return redirect('libros:catalogs')
     else:
         form = AuthorForm(instance=catalog)
     return render(request, 'catalog_form.html', {'form': form})
@@ -178,7 +178,7 @@ def delete_catalog(request, catalog_id):
     catalog = get_object_or_404(Catalog, id=catalog_id)
     if request.method == "POST":
         catalog.delete()
-        return redirect('pokedex:catalogs')
+        return redirect('libros:catalogs')
     return render(request, 'delete_catalog.html', {'catalog': catalog})
 
 
@@ -198,7 +198,7 @@ def add_book(request):
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:books')
+            return redirect('libros:books')
     else:
         form = BookForm()
     return render(request, 'book_form.html', {'form': form})
@@ -210,7 +210,7 @@ def edit_book(request, book_id):
         form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:books')
+            return redirect('libros:books')
     else:
         form = BookForm(instance=book)
     return render(request, 'book_form.html', {'form': form})
@@ -220,7 +220,7 @@ def delete_book(request, book_id):
     book = get_object_or_404(Book, id=book_id)
     if request.method == "POST":
         book.delete()
-        return redirect('pokedex:books')
+        return redirect('libros:books')
     return render(request, 'delete_book.html', {'book': book})
 
 # Vistas para clientes
@@ -239,7 +239,7 @@ def add_client(request):
         form = ClientForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:clients')
+            return redirect('libros:clients')
     else:
         form = ClientForm()
     return render(request, 'client_form.html', {'form': form})
@@ -251,7 +251,7 @@ def edit_client(request, client_id):
         form = ClientForm(request.POST, request.FILES, instance=client)
         if form.is_valid():
             form.save()
-            return redirect('pokedex:clients')
+            return redirect('libros:clients')
     else:
         form = ClientForm(instance=client)
     return render(request, 'client_form.html', {'form': form})
@@ -261,7 +261,7 @@ def delete_client(request, client_id):
     client = get_object_or_404(Client, id=client_id)
     if request.method == "POST":
         client.delete()
-        return redirect('pokedex:clients')
+        return redirect('libros:clients')
     return render(request, 'delete_client.html', {'client': client})
 
 #Vista para compra
@@ -279,7 +279,7 @@ def crear_compra(request):
             form.save_m2m()  # Guarda las relaciones de muchos a muchos
             compra.total = calcular_total(compra.productos.all())
             compra.save()  # Guarda la instancia de Compra con el total actualizado
-            return redirect('pokedex:detalle_compra', pk=compra.pk)
+            return redirect('libros:detalle_compra', pk=compra.pk)
     else:
         form = CompraForm()
     return render(request, 'crear_compra.html', {'form': form})
