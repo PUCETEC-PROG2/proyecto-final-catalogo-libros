@@ -38,10 +38,10 @@ class Author(models.Model):
         return f'{self.first_name} {self.last_name}'
    
 class Catalog(models.Model):
-    status = models.CharField(max_length=255)
+    #status = models.CharField(max_length=255)
     genre = models.CharField(max_length=255)
-    customer_status = models.CharField(max_length=255)
-    payment_type = models.CharField(max_length=255)
+    #customer_status = models.CharField(max_length=255)
+    #payment_type = models.CharField(max_length=255)
 
     def __str__(self) -> str:
         return f'{self.status} - {self.genre}'

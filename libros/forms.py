@@ -54,11 +54,8 @@ class CatalogForm(forms.ModelForm):
        class Meta:
         model = Catalog
         fields = '__all__'
-        widgets = {
-            'status': forms.TextInput(attrs={'class': 'form-control'}),
+        widgets = {    
             'genre': forms.TextInput(attrs={'class': 'form-control'}),
-            'customer_status': forms.TextInput(attrs={'class': 'form-control'}),
-            'payment_type': forms.TextInput(attrs={'class': 'form-control'}),
         }
         
 class BookForm(forms.ModelForm):
