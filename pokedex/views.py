@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.template import loader
-from .models import Pokemon, Trainer, Author,Catalog,Book,Client
+from .models import Pokemon, Trainer, Author,Catalog,Book,Client,Compra
 from django.shortcuts import get_object_or_404, redirect, render
-from pokedex.forms import PokemonForm, TrainerForm,AuthorForm,CatalogForm,BookForm,ClientForm
+from pokedex.forms import PokemonForm, TrainerForm,AuthorForm,CatalogForm,BookForm,ClientForm,CompraForm
+from django.http import JsonResponse
 
 #Importaciones libreria de autenticacion de Django
 from django.contrib.auth.views import LoginView
@@ -262,6 +263,35 @@ def delete_client(request, client_id):
         client.delete()
         return redirect('pokedex:clients')
     return render(request, 'delete_client.html', {'client': client})
+
+#Vista para compra
+
+def compras(request):
+    compras = Compra.objects.all()
+    return render(request, 'detalle_compra.html', {'compras': compras})
+
+def crear_compra(request):
+    if request.method == 'POST':
+        form = CompraForm(request.POST)
+        if form.is_valid():
+            compra = form.save(commit=False)
+            compra.total = calcular_total(compra.productos.all())
+            compra.save()  # Save the compra instance
+            form.save_m2m()  # Save the many-to-many relationships
+            return redirect('pokedex:detalle_compra', pk=compra.pk)
+    else:
+        form = CompraForm()
+    return render(request, 'crear_compra.html', {'form': form})
+
+def detalle_compra(request, pk):
+    compra = Compra.objects.get(pk=pk)
+    return render(request, 'detalle_compra.html', {'compra': compra})
+
+def calcular_total(productos):
+    total = 0
+    for producto in productos:
+        total += producto.precio
+    return total
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'

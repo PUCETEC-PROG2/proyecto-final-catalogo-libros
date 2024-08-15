@@ -40,4 +40,9 @@ urlpatterns = [
     path("add_client/", views.add_client, name="add_client"),
     path("edit_client/<int:client_id>/", views.edit_client, name="edit_client"),
     path("delete_client/<int:client_id>/", views.delete_client, name="delete_client"),
+    
+     path("compras/", views.compras, name="compras"),
+    path('crear_compra/', views.crear_compra, name='crear_compra'),
+    path('detalle_compra/<pk>/', views.detalle_compra, name='detalle_compra'),
+    path('calcular_total/', views.calcular_total, name='calcular_total'),
 ]

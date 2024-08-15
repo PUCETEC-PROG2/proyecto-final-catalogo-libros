@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="card">      
+      <div class="card-body">
+          <h5 class="card-title">Detalle de Compra</h5>
+          <p>Cliente: {{ compra.cliente.first_name }} {{ compra.cliente.last_name }}</p>
+          <p>Fecha: {{ compra.fecha }}</p>
+          <p>Productos:</p>
+          <ul>
+            {% for book in compra.productos.all %}
+              <li>{{ book.title }} ({{ book.price }})</li>
+            {% endfor %}
+          </ul>
+          <p>Total: {{ compra.total }}</p>
+
+      </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pokemon, Trainer,Author,Catalog,Book,Client
+from .models import Pokemon, Trainer,Author,Catalog,Book,Client,Compra
 
 class PokemonForm(forms.ModelForm):
     class Meta:
@@ -84,4 +84,14 @@ class ClientForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'phone': forms.NumberInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        
+class CompraForm(forms.ModelForm):
+    class Meta:
+        model = Compra
+        fields = ('cliente', 'fecha', 'productos')
+        widgets = {
+            'cliente': forms.Select(attrs={'class': 'form-control'}),
+            'fecha': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'productos': forms.CheckboxSelectMultiple(attrs={'class': 'form-control'}),
         }

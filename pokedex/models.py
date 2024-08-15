@@ -77,4 +77,9 @@ class Client(models.Model):
     
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}'
-
+    
+class Compra(models.Model):
+    cliente = models.ForeignKey(Client, on_delete=models.CASCADE)
+    fecha = models.DateField()
+    productos = models.ManyToManyField(Book)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
