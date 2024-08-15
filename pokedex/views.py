@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.template import loader
-from .models import Pokemon, Trainer, Author,Catalog,Book
+from .models import Pokemon, Trainer, Author,Catalog,Book,Client
 from django.shortcuts import get_object_or_404, redirect, render
-from pokedex.forms import PokemonForm, TrainerForm,AuthorForm,CatalogForm,BookForm
+from pokedex.forms import PokemonForm, TrainerForm,AuthorForm,CatalogForm,BookForm,ClientForm
 
 #Importaciones libreria de autenticacion de Django
 from django.contrib.auth.views import LoginView
@@ -221,6 +221,47 @@ def delete_book(request, book_id):
         book.delete()
         return redirect('pokedex:books')
     return render(request, 'delete_book.html', {'book': book})
+
+# Vistas para clientes
+
+def clients(request):
+    clients = Client.objects.all()
+    return render(request, 'clients.html', {'clients': clients})
+
+def client_detail(request, client_id):
+    client = get_object_or_404(Client, id=client_id)
+    return render(request, 'client_detail.html', {'client': client})
+
+@login_required
+def add_client(request):
+    if request.method == "POST":
+        form = ClientForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('pokedex:clients')
+    else:
+        form = ClientForm()
+    return render(request, 'client_form.html', {'form': form})
+
+@login_required
+def edit_client(request, client_id):
+    client = get_object_or_404(Client, id=client_id)
+    if request.method == "POST":
+        form = ClientForm(request.POST, request.FILES, instance=client)
+        if form.is_valid():
+            form.save()
+            return redirect('pokedex:clients')
+    else:
+        form = ClientForm(instance=client)
+    return render(request, 'client_form.html', {'form': form})
+
+@login_required
+def delete_client(request, client_id):
+    client = get_object_or_404(Client, id=client_id)
+    if request.method == "POST":
+        client.delete()
+        return redirect('pokedex:clients')
+    return render(request, 'delete_client.html', {'client': client})
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'

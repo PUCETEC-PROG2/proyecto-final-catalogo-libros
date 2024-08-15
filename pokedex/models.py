@@ -66,4 +66,15 @@ class BookCatalog(models.Model):
 
     def __str__(self) -> str:
         return f'{self.book} in {self.catalog}'
+    
+class Client(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    id_number = models.CharField(max_length=20)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    address = models.TextField()
+    
+    def __str__(self) -> str:
+        return f'{self.first_name} {self.last_name}'
 

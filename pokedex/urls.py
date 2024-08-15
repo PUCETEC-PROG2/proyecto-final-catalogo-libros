@@ -34,4 +34,10 @@ urlpatterns = [
     path("add_book/", views.add_book, name="add_book"),
     path("edit_book/<int:book_id>/", views.edit_book, name="edit_book"),
     path("delete_book/<int:book_id>/", views.delete_book, name="delete_book"),
+    
+    path("clients/", views.clients, name="clients"),
+    path("client/<int:client_id>/", views.client_detail, name="client_detail"),
+    path("add_client/", views.add_client, name="add_client"),
+    path("edit_client/<int:client_id>/", views.edit_client, name="edit_client"),
+    path("delete_client/<int:client_id>/", views.delete_client, name="delete_client"),
 ]

@@ -31,6 +31,9 @@
                       <li class="nav-item">
                         <a class="nav-link btn btn-primary text-white"  href="{% url "pokedex:books" %}" style="margin-right: 15px">Libros</a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link btn btn-warning text-white"  href="{% url "pokedex:clients" %}" style="margin-right: 15px">Clientes</a>
+                      </li>
                       {% if user.is_authenticated %}
                         <li class="nav-item">
                           <a class="nav-link btn btn-danger text-white" href="{% url "pokedex:add_author" %}" style="margin-right: 15px">Nuevo Autor</a>
@@ -41,6 +44,9 @@
                         <li class="nav-item">
                           <a class="nav-link btn btn-primary text-white" href="{% url "pokedex:add_book" %}" style="margin-right: 15px">Nuevo Libro</a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link btn btn-warning text-white" href="{% url "pokedex:add_client" %}" style="margin-right: 15px">Nuevo Cliente</a>
+                    </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-danger text-white" href="{% url "logout" %}">Logout</a>
                         </li>
